@@ -1,0 +1,29 @@
+stages:
+	- compile
+	- build
+	
+
+compile:
+    tags:
+        - windows
+    stage: compile
+    script:
+        - echo "Компилим dev"
+test_compile:
+    tags:
+        - windows
+    stage: compile
+    script:
+        - echo "Компилим dev"
+build:
+    tags:
+        - windows
+    stage: build
+    script:
+        - echo "Работаем в dev"
+test_build:
+    tags:
+        - windows
+    stage: build
+    script:
+        - echo "Работаем в dev"

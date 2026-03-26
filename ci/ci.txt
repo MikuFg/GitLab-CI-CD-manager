@@ -1,0 +1,103 @@
+stages:
+    - clone
+    - compile
+    - build
+    - test
+    - container
+
+variables:
+  TARGET_BRANCH: "main"
+  TARGET_REPO: "gitlab_ci"
+
+clone_project:
+    tags:
+        - windows
+    stage: clone
+    script:
+        - git clone -b $TARGET_BRANCH --single-branch https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.com/pashokioronetkin/$TARGET_REPO.git
+        - cd $TARGET_REPO
+        - Get-Content account.go
+    artifacts:
+        paths:
+            - $TARGET_REPO/account.go
+
+
+compile:
+    tags:
+        - windows
+    stage: compile
+    script:
+        - echo "Компилим dev"
+    when: manual
+
+test_compile:
+    tags:
+        - windows
+    stage: compile
+    script:
+        - echo "Компилим dev"
+    when: manual
+
+build_dev:
+    tags:
+        - windows
+    stage: build
+    script:
+        - echo "Работаем в dev"
+    when: manual
+
+test_build:
+    tags:
+        - windows
+    stage: build
+    script:
+        - echo "Работаем в dev"
+    when: manual
+
+build_main:
+    tags:
+        - windows
+    stage: build
+    script:
+        - echo "Работаем main"
+    when: manual
+
+build_lion:
+  tags: 
+    - windows
+  stage: build
+  script:
+    - echo "Работаем в lion"
+  when: manual
+
+testingAPI:
+    tags:
+        - windows
+    stage: test
+    script:
+        - echo "Testing gitlabAPI"
+    when: manual
+
+testingAPP:
+    stage: test
+    tags:
+        - windows
+    script:
+        - echo "Testing how APP working..."
+    when: manual
+
+Docker:
+    stage: container
+    script:
+        - echo "Add to docker"
+    when: manual
+
+Dexter`s_container:
+    stage: container
+    tags:
+        - windows
+    script:
+        - echo "Tonight the night..."
+    after_script:
+        - echo "la pasion"
+    when: manual

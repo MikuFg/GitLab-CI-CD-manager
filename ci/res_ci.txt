@@ -1,0 +1,10 @@
+stages:
+	- compile
+	
+
+test_compile:
+    tags:
+        - windows
+    stage: compile
+    script:
+        - echo "Компилим dev"
